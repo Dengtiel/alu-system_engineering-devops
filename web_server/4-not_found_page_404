@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Configure Nginx server to have a custom 404 page
 
-# Update and install Nginx
+# Update package list and install Nginx
 sudo apt update
 sudo apt install nginx -y
 
-# Create the necessary HTML files
+# Create necessary HTML files for index and custom 404 error page
 sudo touch /var/www/html/index.html
 sudo touch /var/www/html/error404.html
 
@@ -20,22 +20,20 @@ printf %s "server {
         root /var/www/html;
         index index.html;
         error_page 404 /error404.html;
+        server_name _;
 
-        # Handle redirection for /redirect_me
         location /redirect_me {
            return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4/;
-        }
-
-        # Catch-all for all other requests
-        location / {
-            try_files \$uri \$uri/ =404;
         }
 }
 " | sudo tee /etc/nginx/sites-available/default > /dev/null
 
-# Restart Nginx service
+# Set correct file permissions for index and error pages
+sudo chmod 644 /var/www/html/index.html /var/www/html/error404.html
+
+# Test Nginx configuration
+sudo nginx -t
+
+# Restart Nginx to apply changes
 sudo service nginx restart
 
-# Test by trying to visit a non-existent URL and checking the custom 404 page
-curl -sI http://localhost/xyz
-curl http://localhost/xyzfoo
