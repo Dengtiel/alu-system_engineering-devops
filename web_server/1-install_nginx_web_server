@@ -13,6 +13,8 @@ sudo apt install nginx -y
 # Set "Holberton School" as the content of the default index.html
 echo "Holberton School" | sudo tee /var/www/html/index.html
 
+# Output to terminal as well
+echo "Holberton School"
+
 # Start Nginx service
 sudo service nginx start
-
