@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
-# installs the reverse proxy - Nginx
-sudo apt update && upgrade
-sudo apt install nginx -y 
+# Installs the reverse proxy - Nginx
+
+# Update package list
+sudo apt update 
+
+# Upgrade packages
+sudo apt upgrade -y
+
+# Install Nginx
+sudo apt install nginx -y
+
+# Set "Holberton School" as the content of the default index.html
 echo "Holberton School" | sudo tee /var/www/html/index.html
+
+# Start Nginx service
 sudo service nginx start
+
