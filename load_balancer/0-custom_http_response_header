@@ -1,31 +1,17 @@
 #!/usr/bin/env bash
-# Install and configure Nginx
-
-# Update package lists and install Nginx
+#Install and config Ngin
 sudo apt update -y
 sudo apt install nginx -y
-
-# Define the new Nginx server block configuration
-new_config="server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    root /var/www/html;
-    index index.html index.htm index.nginx-debian.html;
-    server_name _;
-    location / {
-        add_header X-Served-By \$hostname;
-        try_files \$uri \$uri/ =404;
-    }
-}"
-
-# Backup the original Nginx default server block configuration
-sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
-
-# Replace the default server block configuration with the new configuration
-echo "$new_config" | sudo tee /etc/nginx/sites-available/default
-
-# Test the Nginx configuration for syntax errors
-sudo nginx -t
-
-# Reload Nginx to apply the changes
-sudo systemctl reload nginx
+new_config=\
+"server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+		root /var/www/html;
+	index index.html index.html index.nginx-debian.html;
+	server_name _;
+	add_header X-Served-By $HOSTNAME;
+}
+"
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-available/default
+echo "$new_config" > /etc/nginx/sites-available/default
+sudo service nginx restart
