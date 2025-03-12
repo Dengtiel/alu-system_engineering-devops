@@ -2,12 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>404 - Page Not Found</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            color: #ff6f61;
+        }
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        .illustration {
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #ff6f61;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ff3b2f;
+        }
+    </style>
 </head>
 <body>
-    <p><span style="background-color: red">Ceci n'est pas une page</span></p>
-
+    <div class="container">
+        <h1>404</h1>
+        <p>Oops! The page you're looking for doesn't exist.</p>
+        <p><strong>Ceci n'est pas une page</strong></p>
+        <img src="https://assets.codepen.io/404-illustration.svg" alt="404 Illustration" class="illustration">
+        <p>Don't worry, you can always go back to the <a href="/" class="button">Homepage</a>.</p>
+    </div>
 </body>
 </html>
