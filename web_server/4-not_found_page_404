@@ -1,36 +1,23 @@
 #!/usr/bin/env bash
 # Configure Nginx server to have a custom 404 page
-
-# Update and install Nginx
 sudo apt update
 sudo apt install nginx -y
-
-# Create necessary files with correct content
+sudo touch /var/www/html/index.html
+sudo touch /var/www/html/error404.html
 echo "Holberton School" | sudo tee /var/www/html/index.html
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/error404.html
 
-# Configure Nginx server block
-sudo tee /etc/nginx/sites-available/default > /dev/null <<EOL
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    root /var/www/html;
-    index index.html;
-    error_page 404 /error404.html;
-    server_name _;
-
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-    }
+printf %s "server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        index index.html;
+        error_page 404 /error404.html;
+        server_name _;
+        location /redirect_me {
+           return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4/;
+        }
 }
-EOL
+" | sudo tee /etc/nginx/sites-available/default
 
-# Ensure the configuration is enabled
-sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-
-# Test Nginx configuration for errors
-sudo nginx -t
-
-# Restart Nginx to apply changes
-sudo systemctl restart nginx
-
+sudo service nginx restart  
