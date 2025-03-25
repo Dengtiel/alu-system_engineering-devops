@@ -1,6 +1,8 @@
-sh script that configures container
-sudo chmod -R 755 /etc/nginx/
-sudo pkill -9 apache2
-sudo sed -i 's/8080/8081/g' /etc/apache2/ports.conf
-su nginx -c "sed -i 's/80/8080/g' /etc/nginx/sites-enabled/default"
-su nginx service nginx restart
+#!/usr/bin/env bash
+# Configures Nginx to run on port 8080 as nginx user
+chmod -R 755 /etc/nginx
+pkill -9 apache2
+sed -i 's/80/8080/' /etc/nginx/sites-enabled/default
+sed -i 's/user .*/user nginx/' /etc/nginx/nginx.conf
+chown -R nginx /var/lib/nginx
+nginx -g 'daemon off user nginx'
