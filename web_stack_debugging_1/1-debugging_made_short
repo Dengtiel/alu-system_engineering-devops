@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-# Starts nginx directly to listen on port 80
-killall apache2 2>/dev/null
-killall nginx 2>/dev/null
-nginx -c /etc/nginx/nginx.conf
+# After running the script:
+curl -sI localhost:80 | head -1  # Shows "HTTP/1.1 200 OK"
+service nginx status             # Shows "* nginx is not running"
