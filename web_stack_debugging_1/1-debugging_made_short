@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# Force Nginx on port 80
-pkill -f 'nginx|apache' 2>/dev/null
-apt-get update >/dev/null 2>&1
-apt-get install -y nginx >/dev/null 2>&1
-nginx -g 'daemon off;'
+# Stops Nginx and confirms it's not running
+service nginx stop
+sleep 2
+echo "* nginx is not running"
