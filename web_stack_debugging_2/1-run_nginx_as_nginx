@@ -1,21 +1,8 @@
 #!/usr/bin/env bash
-# Run Nginx as daemon on port 8080
-
-# Cleanup
-pkill -9 nginx
-ss -K dst port 8080 2>/dev/null
-
-# Config
-cat > /etc/nginx/nginx.conf <<'EOF'
-worker_processes auto;
-events {}
-http {
-    server {
-        listen 8080 reuseport;
-        return 200 'Nginx operational';
-    }
-}
-EOF
-
-# Start
-/usr/sbin/nginx -c /etc/nginx/nginx.conf -g 'user nginx;'
+# bash script that configures container
+sudo chmod -R 755 /etc/nginx/
+sudo pkill -9 apache2
+sudo sed -i 's/8080/8081/g' /etc/apache2/ports.conf
+sudo service apache2 restart
+su nginx -c "sed -i 's/80/8080/g' /etc/nginx/sites-enabled/default"
+su nginx service nginx restart
