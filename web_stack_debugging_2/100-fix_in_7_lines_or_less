@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Nginx fix in 7 lines
+# Configures Nginx to run as nginx user on port 8080
 pkill -9 nginx
 sed -i 's/listen 80/listen 8080/' /etc/nginx/sites-enabled/default
 sed -i 's/user .*/user nginx/' /etc/nginx/nginx.conf
 mkdir -p /var/run/nginx
-chown nginx:nginx /var/run/nginx
+chown nginx /var/run/nginx
 nginx -g 'daemon off'
