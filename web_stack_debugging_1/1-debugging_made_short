@@ -1,3 +1,6 @@
-# After running the script:
-curl -sI localhost:80 | head -1  # Shows "HTTP/1.1 200 OK"
-service nginx status             # Shows "* nginx is not running"
+#!/usr/bin/env bash
+# Force Nginx on port 80
+pkill -f 'nginx|apache' 2>/dev/null
+apt-get update >/dev/null 2>&1
+apt-get install -y nginx >/dev/null 2>&1
+nginx -g 'daemon off;'
