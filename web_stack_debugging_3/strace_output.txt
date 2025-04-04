@@ -1,0 +1,14 @@
+strace: Process 267 attached
+pselect6(0, NULL, NULL, NULL, {tv_sec=0, tv_nsec=258046284}, NULL) = 0 (Timeout)
+wait4(-1, 0x7fff03389bb4, WNOHANG|WSTOPPED, NULL) = 0
+times({tms_utime=6 /* 0.06 s */, tms_stime=37 /* 0.37 s */, tms_cutime=0, tms_cstime=0}) = 4295144897
+pselect6(0, NULL, NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 0 (Timeout)
+wait4(-1, 0x7fff03389bb4, WNOHANG|WSTOPPED, NULL) = 0
+times({tms_utime=6 /* 0.06 s */, tms_stime=37 /* 0.37 s */, tms_cutime=0, tms_cstime=0}) = 4295144998
+pselect6(0, NULL, NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 0 (Timeout)
+wait4(-1, 0x7fff03389bb4, WNOHANG|WSTOPPED, NULL) = 0
+times({tms_utime=6 /* 0.06 s */, tms_stime=37 /* 0.37 s */, tms_cutime=0, tms_cstime=0}) = 4295145099
+pselect6(0, NULL, NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL) = 0 (Timeout)
+wait4(-1, 0x7fff03389bb4, WNOHANG|WSTOPPED, NULL) = 0
+times({tms_utime=6 /* 0.06 s */, tms_stime=37 /* 0.37 s */, tms_cutime=0, tms_cstime=0}) = 4295145199
+pselect6(0, NULL, NULL, NULL, {tv_sec=1, tv_nsec=0}, NULL
